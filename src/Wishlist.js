@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 function WishlistForm({ destinations }) {
@@ -19,7 +18,7 @@ function WishlistForm({ destinations }) {
     <div>
       <h1>Travel Wishlist</h1>
       <div className="destinations">
-        {destinations.map(destination => (
+        {destinations && destinations.map(destination => (
           <div key={destination.name} className="destination">
             <img src={destination.image} alt={destination.name} />
             <h2>{destination.name}</h2>
@@ -50,6 +49,3 @@ function WishlistForm({ destinations }) {
 }
 
 export default WishlistForm;
-
-        
-    
