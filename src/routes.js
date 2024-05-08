@@ -8,7 +8,7 @@ import Wishlist from "./Wishlist";
 
 const routes = [
   { path: "/getway-travels", element: <App /> },
-  { path: "/getway-travels/specificPage", element: <SpecificPage /> },
+  { path: "/getway-travels/specificPage/:id", element: <SpecificPage /> },
   { path: "/getway-travels/signUp", element: <SignUp /> },
   { path: "/getway-travels/login", element: <Login /> },
   { path: "/getway-travels/contactUs", element: <ContactUs /> },
