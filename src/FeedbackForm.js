@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './FeedbackForm.css'; // Import your CSS file for styling
 
+
 function FeedbackForm() {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -76,6 +77,7 @@ function FeedbackForm() {
       </form>
     </div>
   );
+
 }
 
 export default FeedbackForm;

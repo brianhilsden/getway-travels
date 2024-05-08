@@ -36,20 +36,5 @@
     transform: rotate(360deg);
   }
 }
-.SpecificPage  {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.SpecificPage img {
-  width: 100%;
-  max-width: 800px; /* Limiting the max width to 800px */
-  height: auto; /* Allowing the height to adjust proportionally */
-  object-fit: cover; /* Ensuring the image covers the entire space */
-}
 
-.SpecificPage  p,
-.SpecificPage  button {
-  margin-top: 10px; /* Adding some space between elements */
-}
