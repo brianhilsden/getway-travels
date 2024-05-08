@@ -28,9 +28,10 @@ const Slideshow = () => {
     },
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [opacity, setOpacity] = useState(1);
+  const [opacity, setOpacity] = useState(0.2);
 
   useEffect(() => {
+    setOpacity(1)
   
     const interval = setInterval(() => {
    
@@ -40,8 +41,8 @@ const Slideshow = () => {
       
       setTimeout(()=>{
         setOpacity(0.8)
-      },5800)
-    }, 7000);
+      },6800)
+    }, 8000);
    
 
     return () => {
@@ -56,14 +57,14 @@ const Slideshow = () => {
         src={images[currentImageIndex].url}
         alt={images[currentImageIndex].description}
         style={{
-          filter: "brightness(60%)",
+          filter: "brightness(70%)",
           height: "100vh",
           width: "100%",
           opacity: opacity,
           transition: "opacity 1.1s ease-in-out",
         }}
       />
-      <h1 style={{ position: 'absolute', bottom: '30%', left: "15%", width: '50%', color: 'white', fontSize: '40px', opacity: opacity, transition: 'opacity 0.5s' }}>
+      <h1 style={{ position: 'absolute', bottom: '30%', left: "13%", width: '50%', color: 'white', fontSize: '40px', opacity: opacity, transition: 'opacity 0.5s' }}>
         {images[currentImageIndex].description}
       </h1>
     </div>

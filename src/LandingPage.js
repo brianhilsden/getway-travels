@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Slideshow from "./Slideshow";
 import logo from "./—Pngtree—summer coast vacation logo_5462462.png";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 function LandingPage() {
   const travelData = [
@@ -83,6 +83,7 @@ function LandingPage() {
   const [search, setSearch] = useState("");
   const [wishlistTruth,setWishListTruth] = useState(false)
   const [dataToDispay,setDataToDisplay] = useState(travelData)
+  const [color,setColor] = useState({nav:"transparent",text:"white"})
 
   function handleChange(e){
     setSearch(e.target.value)
@@ -90,6 +91,17 @@ function LandingPage() {
       setDataToDisplay(travelData)
     }
   }
+  useEffect(() => {
+    const handleScroll = () => {
+      const backgroundColor = window.scrollY > 600 ? "white" : "transparent";
+      const textColor = window.scrollY > 600 ? "black" : "white";
+      setColor(color=>({...color,nav:backgroundColor,text:textColor}))
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   function handleSearch(e) {
     e.preventDefault();
     setDataToDisplay(travelData.filter(item => {
@@ -111,11 +123,12 @@ function LandingPage() {
       <nav
         class="navbar navbar-expand-lg navbar-light"
         style={{
-          position: "absolute",
+          position: "fixed",
           width: "100%",
           zIndex: 10,
-          backgroundColor: "transparent",
+          backgroundColor:color.nav,
           color: "white",
+          fontSize:"larger"
         }}
       >
         <div class="container-fluid">
@@ -123,7 +136,7 @@ function LandingPage() {
             class="navbar-brand ms-4"
             onClick={() => navigate("/")}
             style={{
-              color: "white",
+              color: color.text,
               fontSize: "35px",
               fontWeight: "bold",
               cursor: "pointer",
@@ -140,7 +153,7 @@ function LandingPage() {
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
-            style={{ color: "white" }}
+            style={{ color: color.text }}
           >
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -150,7 +163,7 @@ function LandingPage() {
                 <button
                   class="nav-link active"
                   aria-current="page"
-                  style={{ color: "white" }}
+                  style={{ color: color.text }}
                   onClick={() => navigate("/")}
                 >
                   Home
@@ -159,7 +172,7 @@ function LandingPage() {
               <li class="nav-item">
                 <button
                   class="nav-link"
-                  style={{ color: "white" }}
+                  style={{ color: color.text }}
                   onClick={() => navigate("/wishlist")}
                 >
                   WishList
@@ -168,7 +181,7 @@ function LandingPage() {
               <li class="nav-item">
                 <button
                   class="nav-link"
-                  style={{ color: "white" }}
+                  style={{ color: color.text }}
                   onClick={() => navigate("/contactUs")}
                 >
                   Contact Us
@@ -178,7 +191,7 @@ function LandingPage() {
                 <button
                   class="nav-link"
                   onClick={() => navigate("/login")}
-                  style={{ color: "white" }}
+                  style={{ color: color.text }}
                 >
                   Login
                 </button>
@@ -186,7 +199,7 @@ function LandingPage() {
               <li class="nav-item">
                 <button
                   class="nav-link"
-                  style={{ color: "white" }}
+                  style={{ color: color.text }}
                   onClick={() => navigate("/signUp")}
                 >
                   SignUp
@@ -202,14 +215,14 @@ function LandingPage() {
                 value={search}
                 onChange={handleChange}
                 style={{
-                  color: "white",
+                  color: color.text,
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
                 }}
               />
               <button
                 class="btn btn-outline-success"
                 type="submit"
-                style={{ color: "white" }}
+                style={{ color: color.text }}
               >
                 Search
               </button>
@@ -219,7 +232,7 @@ function LandingPage() {
       </nav>
 
       <Slideshow />
-      <div className="d-flex flex-wrap" >
+      <div className="d-flex flex-wrap justify-content-center" >
 
         {dataToDispay.map((data) => (
           <div className="card" style={{ width: "25rem", margin: "1rem", transition: "transform 0.6s", cursor: "pointer" }} onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.03)"} onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"} id="packages">
@@ -234,7 +247,7 @@ function LandingPage() {
               <h5 className="card-title">{data.name} ♡</h5>
               <p className="card-text">{data.description}</p>
               <p className="card-text">
-                <small className="text-muted">{data.price}</small>
+                <small className="text-muted">{data.price} per person</small>
 
               </p>
 
