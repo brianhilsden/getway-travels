@@ -134,7 +134,7 @@ function LandingPage() {
         <div class="container-fluid">
           <div
             class="navbar-brand ms-4"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/getway-travels")}
             style={{
               color: color.text,
               fontSize: "35px",
@@ -164,7 +164,7 @@ function LandingPage() {
                   class="nav-link active"
                   aria-current="page"
                   style={{ color: color.text }}
-                  onClick={() => navigate("/")}
+                  onClick={() => navigate("/getway-travels")}
                 >
                   Home
                 </button>
@@ -173,7 +173,7 @@ function LandingPage() {
                 <button
                   class="nav-link"
                   style={{ color: color.text }}
-                  onClick={() => navigate("/wishlist")}
+                  onClick={() => navigate("/getway-travels/wishlist")}
                 >
                   WishList
                 </button>
@@ -182,7 +182,7 @@ function LandingPage() {
                 <button
                   class="nav-link"
                   style={{ color: color.text }}
-                  onClick={() => navigate("/contactUs")}
+                  onClick={() => navigate("/getway-travels/contactUs")}
                 >
                   Contact Us
                 </button>
@@ -190,7 +190,7 @@ function LandingPage() {
               <li class="nav-item">
                 <button
                   class="nav-link"
-                  onClick={() => navigate("/login")}
+                  onClick={() => navigate("/getway-travels/login")}
                   style={{ color: color.text }}
                 >
                   Login
@@ -200,7 +200,7 @@ function LandingPage() {
                 <button
                   class="nav-link"
                   style={{ color: color.text }}
-                  onClick={() => navigate("/signUp")}
+                  onClick={() => navigate("/getway-travels/signUp")}
                 >
                   SignUp
                 </button>
@@ -241,7 +241,7 @@ function LandingPage() {
               className="card-img-top"
               alt={data.name}
               style={{ width: "100%", height: "250px", objectFit: "cover" }}
-              onClick={() => navigate("/specificPage")}
+              onClick={() => navigate("/getway-travels/specificPage")}
             />
             <div className="card-body">
               <h5 className="card-title">{data.name} ♡</h5>
