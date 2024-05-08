@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Slideshow from "./Slideshow";
 import logo from "./—Pngtree—summer coast vacation logo_5462462.png";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function LandingPage() {
   const travelData = [
@@ -79,40 +79,51 @@ function LandingPage() {
     },
   ];
   const navigate = useNavigate();
-  
-  const [search, setSearch] = useState("");
-  const [wishlistTruth,setWishListTruth] = useState(false)
-  const [dataToDispay,setDataToDisplay] = useState(travelData)
-  const [color,setColor] = useState({nav:"transparent",text:"white"})
 
-  function handleChange(e){
-    setSearch(e.target.value)
-    if(e.target.value === ""){
-      setDataToDisplay(travelData)
+  const [search, setSearch] = useState("");
+  const [wishlistTruth, setWishListTruth] = useState(false);
+  const [dataToDispay, setDataToDisplay] = useState(travelData);
+  const [color, setColor] = useState({ nav: "transparent", text: "white" });
+
+  function handleChange(e) {
+    setSearch(e.target.value);
+    if (e.target.value === "") {
+      setDataToDisplay(travelData);
     }
   }
   useEffect(() => {
     const handleScroll = () => {
       const backgroundColor = window.scrollY > 600 ? "white" : "transparent";
       const textColor = window.scrollY > 600 ? "black" : "white";
-      setColor(color=>({...color,nav:backgroundColor,text:textColor}))
+      setColor((color) => ({
+        ...color,
+        nav: backgroundColor,
+        text: textColor,
+      }));
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   function handleSearch(e) {
     e.preventDefault();
-    setDataToDisplay(travelData.filter(item => {
-      if (search.length > 0) {
-        return (item.name.toLowerCase().includes(search.toLowerCase())|| item.description.toLowerCase().includes(search.toLowerCase()));
-      } else {
-        return item;
-      }
-    }));
+    setDataToDisplay(
+      travelData.filter((item) => {
+        if (search.length > 0) {
+          return (
+            item.name.toLowerCase().includes(search.toLowerCase()) ||
+            item.description.toLowerCase().includes(search.toLowerCase())
+          );
+        } else {
+          return item;
+        }
+      })
+    );
     setTimeout(() => {
-      document.querySelector('#packages').scrollIntoView({ behavior: 'smooth' });
+      document
+        .querySelector("#packages")
+        .scrollIntoView({ behavior: "smooth" });
     }, 100);
   }
   console.log(search);
@@ -126,15 +137,15 @@ function LandingPage() {
           position: "fixed",
           width: "100%",
           zIndex: 10,
-          backgroundColor:color.nav,
+          backgroundColor: color.nav,
           color: "white",
-          fontSize:"larger"
+          fontSize: "larger",
         }}
       >
         <div class="container-fluid">
           <div
             class="navbar-brand ms-4"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/getway-travels")}
             style={{
               color: color.text,
               fontSize: "35px",
@@ -160,52 +171,82 @@ function LandingPage() {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <button
+                <a
                   class="nav-link active"
                   aria-current="page"
-                  style={{ color: color.text }}
-                  onClick={() => navigate("/")}
+                  style={{ color: color.text, cursor: "pointer" }}
+                  onClick={() => navigate("/getway-travels")}
                 >
                   Home
-                </button>
+                </a>
               </li>
               <li class="nav-item">
-                <button
+                <a
                   class="nav-link"
-                  style={{ color: color.text }}
-                  onClick={() => navigate("/wishlist")}
+                  style={{ color: color.text, cursor: "pointer" }}
+                  onClick={() => navigate("/getway-travels/wishlist")}
                 >
                   WishList
-                </button>
+                </a>
               </li>
+
               <li class="nav-item">
-                <button
+                <a
                   class="nav-link"
-                  style={{ color: color.text }}
-                  onClick={() => navigate("/contactUs")}
-                >
-                  Contact Us
-                </button>
-              </li>
-              <li class="nav-item">
-                <button
-                  class="nav-link"
-                  onClick={() => navigate("/login")}
-                  style={{ color: color.text }}
+                  onClick={() => navigate("/getway-travels/login")}
+                  style={{ color: color.text, cursor: "pointer" }}
                 >
                   Login
-                </button>
+                </a>
               </li>
               <li class="nav-item">
-                <button
+                <a
                   class="nav-link"
-                  style={{ color: color.text }}
-                  onClick={() => navigate("/signUp")}
+                  style={{ color: color.text, cursor: "pointer" }}
+                  onClick={() => navigate("/getway-travels/signUp")}
                 >
                   SignUp
-                </button>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  style={{color:color.text}}
+                >
+                  Contact Us
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      onClick={() => navigate("/getway-travels/contactUs")}
+                      style={{ cursor: "pointer" }}
+                    >
+                      Contact Us
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" onClick={()=>navigate("/getway-travels/feedbackForm")} style={{cursor:"pointer"}}>
+                      Share your feedback
+                    </a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      Something else here
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
+
             <form class="d-flex" onSubmit={handleSearch}>
               <input
                 class="form-control me-2"
@@ -217,12 +258,18 @@ function LandingPage() {
                 style={{
                   color: color.text,
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  fontSize: "18px",  // Made the font smaller
+                  padding: "7px 8px"  // Reduced the padding to make the input smaller
                 }}
               />
+
               <button
-                class="btn btn-outline-success"
                 type="submit"
-                style={{ color: color.text }}
+                style={{
+                  color: color.text,
+                  fontSize: "18px",  // Made the font smaller
+                  padding: "5px 1px"  // Reduced the padding to make the button smaller
+                }}
               >
                 Search
               </button>
@@ -232,31 +279,39 @@ function LandingPage() {
       </nav>
 
       <Slideshow />
-      <div className="d-flex flex-wrap justify-content-center" >
-
+      <div className="d-flex flex-wrap justify-content-center">
         {dataToDispay.map((data) => (
-          <div className="card" style={{ width: "25rem", margin: "1rem", transition: "transform 0.6s", cursor: "pointer" }} onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.03)"} onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"} id="packages">
+          <div
+            className="card"
+            style={{
+              width: "25rem",
+              margin: "1rem",
+              transition: "transform 0.6s",
+              cursor: "pointer",
+            }}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.transform = "scale(1.03)")
+            }
+            onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            id="packages"
+          >
             <img
               src={data.image}
               className="card-img-top"
               alt={data.name}
               style={{ width: "100%", height: "250px", objectFit: "cover" }}
-              onClick={() => navigate("/specificPage")}
+              onClick={() => navigate("/getway-travels/specificPage")}
             />
             <div className="card-body">
               <h5 className="card-title">{data.name} ♡</h5>
               <p className="card-text">{data.description}</p>
               <p className="card-text">
                 <small className="text-muted">{data.price} per person</small>
-
               </p>
-
-
-
             </div>
           </div>
-        ))}</div>
-
+        ))}
+      </div>
     </div>
   );
 }

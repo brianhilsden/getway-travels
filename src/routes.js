@@ -7,13 +7,13 @@ import FeedBackForm from "./FeedbackForm";
 import Wishlist from "./Wishlist";
 
 const routes = [
-  { path: "/", element: <App /> },
-  { path: "/specificPage", element: <SpecificPage /> },
-  { path: "/signUp", element: <SignUp /> },
-  { path: "/login", element: <Login /> },
-  { path: "/contactUs", element: <ContactUs /> },
-  { path: "/signUp", element: <SignUp /> },
-  { path: "/feedbackForm", element: <FeedBackForm /> },
-  { path: "/wishlist", element: <Wishlist /> },
+  { path: "/getway-travels", element: <App /> },
+  { path: "/getway-travels/specificPage", element: <SpecificPage /> },
+  { path: "/getway-travels/signUp", element: <SignUp /> },
+  { path: "/getway-travels/login", element: <Login /> },
+  { path: "/getway-travels/contactUs", element: <ContactUs /> },
+  { path: "/getway-travels/signUp", element: <SignUp /> },
+  { path: "/getway-travels/feedbackForm", element: <FeedBackForm /> },
+  { path: "/getway-travels/wishlist", element: <Wishlist /> },
 ];
 export { routes };
