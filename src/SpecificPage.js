@@ -13,6 +13,7 @@ const SpecificPage = ({ image, description, Itinerary, price, onBookNow, onAddTo
   };
   return (
     <div className="display:flex flex-column">
+      <h1 style={{ textAlign: 'center', fontFamily: 'Arial' }}>  MAASAI MARA</h1>
        <img src="https://images.unsplash.com/photo-1521651201144-634f700b36ef?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="100%" height="50vh" className='ms-2' alt="Travel destination" style={{ top: 0, left: 0, order: -1, width: '100%', height: '50vh' }} />
               <p > DESCRIPTION :Home to The Big Five, Mighty Masai Warriors And The Eight Wonder Of The World. This destination is a must see for every traveler. Prepare to be in awe by the stunning views of the African plains, come face to face with the king of the jungle and learn more about the Maasai Mara. Part of the fun of going on safari is planning your safari. We have been there and we know how it feels. As avid travelers we can imagine you have a ton of questions. Very few places on earth are as unspoilt, adventurous and authentic as the Maasai Mara eco-system. Allow us to plan the best 3-Day safari adventure just for you.
 
