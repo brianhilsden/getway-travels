@@ -82,7 +82,7 @@ function LandingPage() {
 
   const [search, setSearch] = useState("");
   const [wishlistTruth, setWishListTruth] = useState(false);
-  const [dataToDispay, setDataToDisplay] = useState(travelData);
+  const [dataToDispay, setDataToDisplay] = useState([]);
   const [color, setColor] = useState({ nav: "transparent", text: "white" });
 
   function handleChange(e) {
@@ -91,6 +91,12 @@ function LandingPage() {
       setDataToDisplay(travelData);
     }
   }
+  useEffect(()=>{
+    fetch("http://localhost:4001/packages")
+    .then(res=>res.json())
+    .then(data=>setDataToDisplay(data))
+  },[])
+  
   useEffect(() => {
     const handleScroll = () => {
       const backgroundColor = window.scrollY > 600 ? "white" : "transparent";
@@ -126,8 +132,6 @@ function LandingPage() {
         .scrollIntoView({ behavior: "smooth" });
     }, 100);
   }
-  console.log(search);
-  console.log(dataToDispay);
 
   return (
     <div style={{ background: "whitesmoke" }}>
@@ -300,7 +304,7 @@ function LandingPage() {
               className="card-img-top"
               alt={data.name}
               style={{ width: "100%", height: "250px", objectFit: "cover" }}
-              onClick={() => navigate("/getway-travels/specificPage")}
+              onClick={() => navigate(`/getway-travels/specificPage/${data.id}`)}
             />
             <div className="card-body">
               <h5 className="card-title">{data.name} ♡</h5>
