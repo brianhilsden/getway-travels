@@ -1,44 +1,55 @@
+
 import React, { useState } from 'react';
 
-import Input from 'path/to/Input';
+function WishlistForm({ destinations }) {
+  const [wishlist, setWishlist] = useState([]);
 
-function Wishlist() {
-    const [destinations, setDestinations] = useState([]);
-    const [destinationInput, setDestinationInput] = useState('');
+  const addToWishlist = (destination) => {
+    if (!wishlist.some(item => item.name === destination.name)) {
+      setWishlist([...wishlist, destination]);
+    }
+  };
 
-    const addDestination = () => {
-        if (destinationInput.trim() !== "") {
-            setDestinations([...destinations, destinationInput.trim()]);
-            setDestinationInput('');
-        }
-    };
+  const removeFromWishlist = (name) => {
+    const updatedWishlist = wishlist.filter(item => item.name !== name);
+    setWishlist(updatedWishlist);
+  };
 
-    const removeDestination = (index) => {
-        const updatedDestinations = [...destinations];
-        updatedDestinations.splice(index, 1);
-        setDestinations(updatedDestinations);
-    };
-
-    return (
-        <div>
-            <h1>Travel Destination Wishlist</h1>
-            <Input
-                type="text"
-                value={destinationInput}
-                onChange={(e) => setDestinationInput(e.target.value)}
-                placeholder="Enter destination..."
-            />
-            <button onClick={addDestination}>Add Destination</button>
-            <ul>
-                {destinations.map((destination, index) => (
-                    <li key={index}>
-                        {destination}
-                        <button onClick={() => removeDestination(index)}>Remove</button>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+  return (
+    <div>
+      <h1>Travel Wishlist</h1>
+      <div className="destinations">
+        {destinations.map(destination => (
+          <div key={destination.name} className="destination">
+            <img src={destination.image} alt={destination.name} />
+            <h2>{destination.name}</h2>
+            <p>{destination.description}</p>
+            <p>Price: ${destination.price}</p>
+            <button onClick={() => addToWishlist(destination)}>Add to Wishlist</button>
+          </div>
+        ))}
+      </div>
+      <div className="wishlist">
+        <h2>My Wishlist</h2>
+        {wishlist.length === 0 ? <p>Your wishlist is empty</p> : null}
+        <ul>
+          {wishlist.map(item => (
+            <li key={item.name}>
+              <img src={item.image} alt={item.name} />
+              <div>
+                <h3>{item.name}</h3>
+                <p>Price: ${item.price}</p>
+                <button onClick={() => removeFromWishlist(item.name)}>Remove</button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
 }
 
-export default Wishlist;
+export default WishlistForm;
+
+        
+    
