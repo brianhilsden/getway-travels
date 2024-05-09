@@ -22,9 +22,9 @@ function LoginForm() {
   };
 
   return (
-    <div className="login-form-container">
+    <div className="login-form-container mt-3">
       <h2>Login</h2>
-      <form onSubmit={handleSubmit} className="login-form">
+      <form onSubmit={handleSubmit} className="login-form " style={{marginTop:"80px"}}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
           <input type="text" id="username" name="username" value={formData.username} onChange={handleInputChange} />

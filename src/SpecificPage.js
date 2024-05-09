@@ -18,14 +18,14 @@ const SpecificPage = ({name, image, description, Itinerary, price, onBookNow, on
     onAddToWishlist();
   };
   useEffect(()=>{
-    fetch(`http://localhost:4001/packages/${specificPageid}`)
+    fetch(`https://getway-travels-json.onrender.com/packages/${specificPageid}`)
     .then(res=>res.json())
     .then(data=> setSpecificPage(data))
     setShowSearchBar(false)
   },[])
   function addToWishlist(packageSaved){
     if(packageSaved.wishlist === false){
-      fetch("http://localhost:4001/wishlist",{
+      fetch("https://getway-travels-json.onrender.com/wishlist",{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
@@ -38,7 +38,7 @@ const SpecificPage = ({name, image, description, Itinerary, price, onBookNow, on
   
     }
     else{
-      fetch(`http://localhost:4001/wishlist/${packageSaved.id}`,{
+      fetch(`https://getway-travels-json.onrender.com/wishlist${packageSaved.id}`,{
         method:"DELETE",
         headers:{
           "Content-Type":"application/json",

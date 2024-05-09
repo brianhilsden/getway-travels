@@ -23,9 +23,10 @@ function SignUpForm() {
   };
 
   return (
-    <div className="form-container">
+    <>
+    <div className="form-container" >
       <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <div className="form-group">
           <label htmlFor="username">Username</label>
           <input type="text" id="username" name="username" value={formData.username} onChange={handleInputChange} />
@@ -41,6 +42,7 @@ function SignUpForm() {
         <button type="submit">Sign Up</button>
       </form>
     </div>
+    </>
   );
 }
 
