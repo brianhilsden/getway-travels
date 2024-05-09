@@ -25,7 +25,7 @@ const SpecificPage = ({name, image, description, Itinerary, price, onBookNow, on
     <div className="container-fluid" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1471922694854-ff1b63b20054?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')` }}>
       <h1 className='text-center'>{SpecificPage.name}</h1>
       <div className='d-flex align-items-center'>
-      <img src={SpecificPage.image} width="50%" height="50vh" className='ms-2' alt="Travel destination" style={{ top: 0, left: 0, order: -1, width: '50%', height: '50vh' }} />
+      <img src={SpecificPage.image} width="100%" height="50vh" className='ms-2' alt="Travel destination" style={{ top: 0, left: 0, order: -1, width: '100%', height: '50vh' }} />
               <p className='ms-4'>DESCRIPTION: {SpecificPage.description} </p>
       </div>
        
