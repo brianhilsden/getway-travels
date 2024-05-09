@@ -12,7 +12,7 @@ function App() {
 
      
   useEffect(()=>{
-    fetch("http://localhost:4001/packages")
+    fetch("https://getway-travels-json.onrender.com/packages")
     .then(res=>res.json())
     .then(data=>setData(data))
   },[])
