@@ -15,7 +15,7 @@ function LandingPage() {
 
 function addToWishlist(packageSaved){
   if(packageSaved.wishlist === false){
-    fetch("http://localhost:4001/wishlist",{
+    fetch("https://getway-travels-json.onrender.com/wishlist",{
     method:"POST",
     headers:{
       "Content-Type":"application/json",
@@ -29,7 +29,7 @@ function addToWishlist(packageSaved){
 
   }
   else{
-    fetch(`http://localhost:4001/wishlist/${packageSaved.id}`,{
+    fetch(`https://getway-travels-json.onrender.com/${packageSaved.id}`,{
       method:"DELETE",
       headers:{
         "Content-Type":"application/json",

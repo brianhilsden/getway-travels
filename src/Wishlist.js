@@ -10,7 +10,7 @@ const WishlistPage = () => {
   const [ , , ,setShowSearchBar] = useOutletContext()
 
  useEffect(()=>{
-  fetch("http://localhost:4001/wishlist")
+  fetch("https://getway-travels-json.onrender.com/wishlist")
   .then(res=>res.json())
   .then(data=>setWishlistItems(data))
   setShowSearchBar(false)
@@ -21,7 +21,7 @@ const WishlistPage = () => {
   const removeItemFromWishlist = (id) => {
     const updatedWishlistItems = wishlistItems.filter((item) => item.id !== id);
     setWishlistItems(updatedWishlistItems);
-    fetch(`http://localhost:4001/wishlist/${id}`,{
+    fetch(`https://getway-travels-json.onrender.com/wishlist/${id}`,{
       method:"DELETE",
       headers:{
         "Content-Type":"application/json",
