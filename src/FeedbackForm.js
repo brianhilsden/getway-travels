@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import './FeedbackForm.css'; // Import your CSS file for styling
+import { useNavigate } from 'react-router-dom';
+import './FeedbackForm.css'; 
 
 function FeedbackForm() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     phoneNumber: '',
     feedback: '',
-    questions: {
-      satisfaction: '',
-      experience: '',
-      recommendation: ''
-    }
+    satisfaction: '', 
+    experience: '', 
+    recommendation: '' 
   });
 
   const handleInputChange = (e) => {
@@ -22,26 +22,20 @@ function FeedbackForm() {
     }));
   };
 
-  const handleQuestionChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      questions: {
-        ...prevState.questions,
-        [name]: value
-      }
-    }));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    // Add further processing as needed
+    // Add further 
+    
+    alert('Feedback submitted successfully!');
+  
+  // Redirect to another page if form is submitted
+  navigate('/');
   };
-
   return (
     <div className="form-container">
-      <h2>Gateways Travel Feedback Form</h2>
+      <h2 > GetWays Travel Feedback Form</h2>
+      <p>Please fill out the form below:</p>
       <form onSubmit={handleSubmit}>
         <label>
           Full Name:
@@ -60,22 +54,60 @@ function FeedbackForm() {
           <textarea name="feedback" value={formData.feedback} onChange={handleInputChange} />
         </label>
         <h3>Additional Questions</h3>
+        <label> 
+          How Did You Find Out About Us?
+          <select name ="Find" value ={formData.Find} onChange={handleInputChange}>
+            <option value="">Select a way</option>
+            <option value="google">Google</option>
+            <option value="facebook">Facebook</option>
+
+            <option value="instagram">Instagram</option>
+
+            <option value="twitter">Twitter</option>
+
+            <option value="linkedin">LinkedIn</option>
+
+            <option value="other">Other</option>
+          </select>
+          </label>
         <label>
           How satisfied were you with our services?
-          <input type="text" name="satisfaction" value={formData.questions.satisfaction} onChange={handleQuestionChange} />
+          <select name="satisfaction" value={formData.satisfaction} onChange={handleInputChange}>
+            <option value="">Select satisfaction level</option>
+            <option value="very-satisfied">Very satisfied</option>
+            <option value="satisfied">Satisfied</option>
+            <option value="neutral">Neutral</option>
+            <option value="dissatisfied">Dissatisfied</option>
+            <option value="very-dissatisfied">Very dissatisfied</option>
+          </select>
         </label>
         <label>
           How was your overall experience with Gateways Travel?
-          <input type="text" name="experience" value={formData.questions.experience} onChange={handleQuestionChange} />
+          <select name="experience" value={formData.experience} onChange={handleInputChange}>
+            <option value="">Select experience</option>
+            <option value="excellent">Excellent</option>
+            <option value="good">Good</option>
+            <option value="average">Average</option>
+            <option value="poor">Poor</option>
+            <option value="very-poor">Very poor</option>
+          </select>
         </label>
         <label>
           Would you recommend Gateways Travel to others?
-          <input type="text" name="recommendation" value={formData.questions.recommendation} onChange={handleQuestionChange} />
+          <select name="recommendation" value={formData.recommendation} onChange={handleInputChange}>
+            <option value="">Select recommendation</option>
+            <option value="definitely">Definitely</option>
+            <option value="probably">Probably</option>
+            <option value="maybe">Maybe</option>
+            <option value="probably-not">Probably not</option>
+            <option value="definitely-not">Definitely not</option>
+          </select>
         </label>
-        <button type="submit">Submit Feedback</button>
+        <button type="submit" className="submit-button">Submit Feedback</button>
       </form>
     </div>
   );
+ 
 }
 
 export default FeedbackForm;

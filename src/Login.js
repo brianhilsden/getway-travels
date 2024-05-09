@@ -2,9 +2,11 @@
 
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css'
 
 function LoginForm() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -21,11 +23,14 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    // Add further processing as needed
+    // Redirect
+    navigate('/');
   };
 
   return (
     <div className="login-form-container">
+      
+      <div className="background"></div>
       <h2>Login</h2>
       <form onSubmit={handleSubmit} className="login-form">
         <div className="form-group">
