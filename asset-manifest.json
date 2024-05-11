@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/getway-travels/static/css/main.b6e442d3.css",
-    "main.js": "/getway-travels/static/js/main.8695f391.js",
+    "main.css": "/getway-travels/static/css/main.098494b4.css",
+    "main.js": "/getway-travels/static/js/main.6ff8afbc.js",
     "static/js/453.9b35eb75.chunk.js": "/getway-travels/static/js/453.9b35eb75.chunk.js",
     "static/media/—Pngtree—summer coast vacation logo_5462462.png": "/getway-travels/static/media/—Pngtree—summer coast vacation logo_5462462.a82ea68c329675592afc.png",
     "index.html": "/getway-travels/index.html",
-    "main.b6e442d3.css.map": "/getway-travels/static/css/main.b6e442d3.css.map",
-    "main.8695f391.js.map": "/getway-travels/static/js/main.8695f391.js.map",
+    "main.098494b4.css.map": "/getway-travels/static/css/main.098494b4.css.map",
+    "main.6ff8afbc.js.map": "/getway-travels/static/js/main.6ff8afbc.js.map",
     "453.9b35eb75.chunk.js.map": "/getway-travels/static/js/453.9b35eb75.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b6e442d3.css",
-    "static/js/main.8695f391.js"
+    "static/css/main.098494b4.css",
+    "static/js/main.6ff8afbc.js"
   ]
 }
