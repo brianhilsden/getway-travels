@@ -2,15 +2,16 @@ import { useNavigate } from "react-router-dom";
 import Slideshow from "./Slideshow";
 import { useOutletContext } from "react-router-dom";
 
-import { useEffect, useState} from "react";
+import { useEffect} from "react";
 
 function LandingPage() {
   
   const navigate = useNavigate();
-  const [dataToDispay,setColor,setData,setShowSearchBar] = useOutletContext()
+  const [dataToDispay,setColor,setData,setShowSearchBar,setComponent] = useOutletContext()
   useEffect(()=>{
-    setColor(prev=>({...prev,nav:"transparent",text:"white"}))
+    setColor(prev=>({...prev,nav:"transparent",text:"white",lineargradient:""}))
     setShowSearchBar(true)
+    setComponent("landing")
   },[])
 
 function addToWishlist(packageSaved){

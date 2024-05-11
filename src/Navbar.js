@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { useState,useEffect } from "react";
 import logo from "./—Pngtree—summer coast vacation logo_5462462.png";
 
-function Navbar({search,setSearch,color,setColor,showSearchBar}){
+function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShowSearchBar}){
 
   // Function to handle changes in the search input
   function handleChange(e) {
@@ -24,19 +24,26 @@ function Navbar({search,setSearch,color,setColor,showSearchBar}){
   // Effect hook to add/remove event handler for navbar color changes on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const backgroundColor = window.scrollY > 600 ? "white" : "transparent";
-      const textColor = window.scrollY > 600 ? "black" : "white";
-      setColor((color) => ({
-        ...color,
-        nav: backgroundColor,
-        text: textColor,
-      }));
-    };
+    
+    const lineargradient = window.scrollY > 600 ? "linear-gradient(112.1deg, rgba(32, 38, 57, 0.96) 19.4%, rgba(63, 76, 119, 0.96) 70.2%)" : "";
+     
+     setColor(prev => ({...prev, lineargradient: lineargradient}))}
 
-    window.addEventListener("scroll", handleScroll);
+    if(component === "landing"){
+      window.addEventListener("scroll", handleScroll);
+    }
+    else{
+      setShowSearchBar(false)
+      if(component == "contactUs" || component == "feedbackForm"){
+            setColor(prev => ({...prev, lineargradient: "linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%)", text: "white"}))}
+        else{
+          setColor(prev => ({...prev,nav:"transparent",text:"white",lineargradient:""}))
+        }
+    }
+    console.log(component);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [component]);
 
   return(
     <nav
@@ -46,6 +53,7 @@ function Navbar({search,setSearch,color,setColor,showSearchBar}){
       width: "100%",
       zIndex: 10,
       backgroundColor: color.nav,
+      backgroundImage:color.lineargradient,
       color: "white",
       fontSize: "larger",
     }}
@@ -101,7 +109,7 @@ function Navbar({search,setSearch,color,setColor,showSearchBar}){
           <li class="nav-item">
             <a
               class="nav-link"
-              onClick={() => { navigate("/getway-travels/login") ; setColor(prev => ({...prev, nav: "white", text: "black"}))}}
+              onClick={() => { navigate("/getway-travels/login")}}
               style={{ color: color.text, cursor: "pointer" }}
             >
               Login

@@ -6,8 +6,9 @@ import { useState,useEffect } from 'react';
 function App() {
   const [data, setData] = useState([]);
   const [search,setSearch] = useState("")
-  const [color, setColor] = useState({ nav: "transparent", text: "white" });
+  const [color, setColor] = useState({ nav: "transparent", text: "white",lineargradient:"" });
   const [showSearchBar,setShowSearchBar] = useState(true)
+  const [component,setComponent] = useState("")
  
 
      
@@ -35,8 +36,8 @@ function App() {
 
   return (
     <>
-    <Navbar search={search} setSearch={setSearch} color={color} setColor={setColor} showSearchBar={showSearchBar}/>
-    <Outlet context={[dataToDispay,setColor,setData,setShowSearchBar]} />
+    <Navbar search={search} setSearch={setSearch} color={color} setColor={setColor} showSearchBar={showSearchBar} component={component} setShowSearchBar = {setShowSearchBar}/>
+    <Outlet context={[dataToDispay,setColor,setData,setShowSearchBar,setComponent]} />
     </>
   );
 }

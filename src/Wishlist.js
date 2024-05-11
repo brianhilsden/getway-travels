@@ -7,13 +7,13 @@ import { useOutletContext } from 'react-router-dom';
 const WishlistPage = () => {
  const navigate = useNavigate ()
   const [wishlistItems, setWishlistItems] = useState([]);
-  const [ , , ,setShowSearchBar] = useOutletContext()
+  const [ , , , ,setComponent] = useOutletContext()
 
  useEffect(()=>{
   fetch("https://getway-travels-json.onrender.com/wishlist")
   .then(res=>res.json())
   .then(data=>setWishlistItems(data))
-  setShowSearchBar(false)
+  setComponent("wishlist")
 
  },[])
 
@@ -30,11 +30,10 @@ const WishlistPage = () => {
       
     })
   };
-
+ 
   return (
     <div className={styles['wishlist-page']}> {/* Use CSS module class */}
-     
-      
+  
       <Carousel showThumbs={false} infiniteLoop autoPlay>
         {wishlistItems.map((item) => (
           <div key={item.id}>

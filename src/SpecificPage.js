@@ -6,7 +6,7 @@ const SpecificPage = ({name, image, description, Itinerary, price, onBookNow, on
   const specificPageid = params.id
   console.log (specificPageid)
   const [SpecificPage, setSpecificPage] = useState({})
-  const [ , , ,setShowSearchBar] = useOutletContext()
+  const [ , , ,setShowSearchBar,setComponent] = useOutletContext()
   const [isWishlist, setIsWishlist] = useState(SpecificPage.wishlist)
   const handleBookNow = () => {
     onBookNow();
@@ -21,7 +21,8 @@ const SpecificPage = ({name, image, description, Itinerary, price, onBookNow, on
     fetch(`https://getway-travels-json.onrender.com/packages/${specificPageid}`)
     .then(res=>res.json())
     .then(data=> setSpecificPage(data))
-    setShowSearchBar(false)
+   
+    setComponent("specificPage")
   },[])
   function addToWishlist(packageSaved){
     if(packageSaved.wishlist === false){
@@ -48,6 +49,7 @@ const SpecificPage = ({name, image, description, Itinerary, price, onBookNow, on
       }).then(()=>setIsWishlist(false))}}
   return (
     <div className="container-fluid" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1471922694854-ff1b63b20054?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')` }}>
+      <div style={{height:"10vh"}}></div>
       <h1 className='text-center'>{SpecificPage.name}</h1>
       <div className='d-flex align-items-center'>
       <img src={SpecificPage.image} width="100%" height="50vh" className='ms-2' alt="Travel destination" style={{ top: 0, left: 0, order: -1, width: '100%', height: '50vh' }} />

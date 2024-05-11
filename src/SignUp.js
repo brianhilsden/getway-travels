@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css'; 
+import { useOutletContext } from 'react-router-dom';
 
 function SignUpForm() {
     const navigate = useNavigate()
+    const [ , , , ,setComponent] = useOutletContext()
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -22,15 +24,17 @@ function SignUpForm() {
     e.preventDefault();
     console.log(formData)
     // RedirectToLandingPage
-    navigate('/');
+    navigate('/getway-travels');
   };
   
-
+useEffect(()=>{
+  setComponent("signUp")
+},[])
 
   return (
     <div className="container-fluid">
       <div className="background-signUp" ></div>
-     <div className="form-card">
+     <div className="form-card" >
 
         <h2>Sign Up</h2>
         <form onSubmit={handleSubmit}>

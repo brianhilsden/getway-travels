@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'
-
+import { useOutletContext } from 'react-router-dom';
 function LoginForm() {
   const navigate = useNavigate()
+  const [ , , , ,setComponent] = useOutletContext()
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -21,8 +22,13 @@ function LoginForm() {
     e.preventDefault();
     console.log(formData);
     // Redirect
-    navigate('/');
+    navigate('/getway-travels');
   };
+
+  useEffect(()=>{
+ 
+    setComponent("login")
+  },[])
 
   return (
     <div className="login-form-container">

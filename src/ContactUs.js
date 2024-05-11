@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ContactUs.css';
+import { useOutletContext } from 'react-router-dom';
 
 function ContactForm() {
   const navigate = useNavigate();
+  const [ , , , ,setComponent] = useOutletContext()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
+
+  useEffect(()=>{
+    
+    setComponent("contactUs")
+  },[])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,7 +34,7 @@ function ContactForm() {
     alert('Message sent successfully!');
 
     // Redirect
-    navigate('/');
+    navigate('/getway-travels');
 
     // Clear form fields after submission
     setFormData({
@@ -38,8 +45,13 @@ function ContactForm() {
   };
 
   return (
+    <>
+    <div style={{height:"10.7vh"}}></div>
+    
     <div className="contact-container">
+    
       <div className="form-container">
+        
         <h2>Contact Us</h2>
         <form onSubmit={handleSubmit} className="contact-form">
           <div className="form-group">
@@ -64,6 +76,7 @@ function ContactForm() {
         <p><strong>Email:</strong> GatewaysTravels@gmail.com</p>
       </div>
     </div>
+    </>
   );
 }
 
