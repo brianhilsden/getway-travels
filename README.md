@@ -1,4 +1,4 @@
-# Phase 2 Project
+# Phase 2 Project - Getway Travels
 #### Date: 12/May/2024
 
 ## Description  
