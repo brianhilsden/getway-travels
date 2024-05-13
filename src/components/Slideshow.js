@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const Slideshow = () => {
+  // This array stores the details of the images used in the slideshow
   const images = [
     {
       url: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1473&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90oy1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -19,7 +20,7 @@ const Slideshow = () => {
       description: "Paddle your way to serenity and row into the sunset on an unforgettable journey.",
     },
     {
-      url: "https://images.unsplash.com/photo-1445307806294-bff7f67ff225?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      url: "https://images.unsplash.com/photo-1445307806294-bff7f67ff225?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90oy1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       description: "Whispering forests, serene landscapes, feel the essence of nature's tranquility.",
     },
     {
@@ -27,30 +28,33 @@ const Slideshow = () => {
       description: "Discover the thrill of a safari adventure, capturing the untamed beauty of wildlife in their natural habitat.",
     },
   ];
+  // State to track the current image index
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  // State to control the opacity of images
   const [opacity, setOpacity] = useState(0.2);
 
+  // Effect hook to cycle through images on a timer
   useEffect(() => {
-    setOpacity(1)
-  
-    const interval = setInterval(() => {
-   
-      setCurrentImageIndex(  currentImageIndex<images.length-1?currentImageIndex+1:0);
-          
-        setOpacity(1);
-      
-      setTimeout(()=>{
-        setOpacity(0.8)
-      },6800)
-    }, 8000);
-   
+    setOpacity(1); // Immediately set opacity to full when component mounts
 
+    const interval = setInterval(() => {
+      // Change the image index, loop back if at the end of the array
+      setCurrentImageIndex(currentImageIndex < images.length - 1 ? currentImageIndex + 1 : 0);
+
+      setOpacity(1); // Set image fully visible
+
+      setTimeout(() => {
+        setOpacity(0.8) // Decrease opacity slightly before the next transition
+      }, 6800)
+    }, 8000);
+
+    // Callback to clear the interval when the component is unmounted
     return () => {
       clearInterval(interval);
-      
-    }; // Clean up on component unmount
-  }, [currentImageIndex, images.length]);
+    };
+  }, [currentImageIndex, images.length]); // This effect depends on currentImageIndex and images.length
 
+ 
   return (
     <div style={{background:"black"}}>
       <img

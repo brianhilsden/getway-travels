@@ -4,36 +4,34 @@ import './ContactUs.css';
 import { useOutletContext } from 'react-router-dom';
 
 function ContactForm() {
-  const navigate = useNavigate();
-  const [ , , , ,setComponent] = useOutletContext()
+  const navigate = useNavigate(); // Provides navigation capabilities in your component
+  const [ , , , ,setComponent] = useOutletContext() // Extract setComponent function from outlet context destructuring
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
-  });
+  }); 
 
   useEffect(()=>{
-    
-    setComponent("contactUs")
-  },[])
+
+    setComponent("contactUs") // Set active component in the outlet context
+  },[]) 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
       [name]: value
-    }));
+    })); // Handle input changes for form fields
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    // Add further processing as needed
 
     // Show alert after form submission
     alert('Message sent successfully!');
 
-    // Redirect
+    // Redirect to homepage after submission
     navigate('/getway-travels');
 
     // Clear form fields after submission
@@ -47,11 +45,11 @@ function ContactForm() {
   return (
     <>
     <div style={{height:"8vh"}}></div>
-    
+
     <div className="contact-container">
-    
+
       <div className="form-container">
-        
+
         <h2>Contact Us</h2>
         <form onSubmit={handleSubmit} className="contact-form">
           <div className="form-group">
