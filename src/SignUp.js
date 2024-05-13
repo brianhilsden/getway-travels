@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css'; 
+import { useOutletContext } from 'react-router-dom';
+import { createUserWithEmailAndPassword,getAuth,updateProfile } from 'firebase/auth';
+import { auth } from './firebase';
 
 function SignUpForm() {
     const navigate = useNavigate()
+    const [ , , , ,setComponent] = useOutletContext()
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -18,19 +22,37 @@ function SignUpForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(formData)
-    // RedirectToLandingPage
-    navigate('/');
+  
+    await createUserWithEmailAndPassword(auth,formData.email,formData.password)
+    .then(()=>{  
+      navigate('/getway-travels');
+    }).then(()=>{
+      updateProfile(auth.currentUser, {
+        displayName: formData.username
+      }).catch((error) => {
+        console.error(error)
+        // An error occurred
+        // ...
+      });
+    }) .catch((error) => {
+      const errorMessage = error.message;
+      alert(errorMessage);
+  });
+
+    
   };
   
+useEffect(()=>{
+  setComponent("signUp")
+},[])
 
 
   return (
     <div className="container-fluid">
       <div className="background-signUp" ></div>
-     <div className="form-card">
+     <div className="form-card" >
 
         <h2>Sign Up</h2>
         <form onSubmit={handleSubmit}>
