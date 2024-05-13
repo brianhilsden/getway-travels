@@ -55,6 +55,17 @@ function LandingPage() {
             )
           )
         ); // Update the local data to reflect wishlist change
+        fetch("https://getway-travels-json.onrender.com/wishlist",{
+          method:"POST",
+          headers:{
+            "Content-Type": "application/json",
+            Accept: "application/json"
+
+          },
+          body:JSON.stringify(packageSaved)
+        }
+        )
+
     } else {
       fetch(
         `https://getway-travels-json.onrender.com/packages/${packageSaved.id}`,
@@ -77,6 +88,12 @@ function LandingPage() {
           )
         )
       ); // Update the local data to reflect wishlist change
+      fetch(`https://getway-travels-json.onrender.com/wishlist/${packageSaved.id}`,{
+        method:"DELETE",
+        headers:{
+          "Content-Type": "application/json",
+        }
+      })
     }
   }
 

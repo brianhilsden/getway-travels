@@ -31,6 +31,12 @@ const WishlistPage = () => {
         wishlist:false
       })
     })
+    fetch(`https://getway-travels-json.onrender.com/wishlist/${id}`,{
+        method:"DELETE",
+        headers:{
+          "Content-Type": "application/json",
+        }
+      })
   };
  
   return (
