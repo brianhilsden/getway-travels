@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import './FeedbackForm.css'; 
 
 
 function FeedbackForm() {
   const navigate = useNavigate()
+  const [ ,  , ,, setComponent] = useOutletContext()
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -15,6 +17,9 @@ function FeedbackForm() {
     recommendation: '' 
   });
 
+  useEffect(()=>{
+    setComponent("feedbackForm")
+  },[])
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -25,17 +30,20 @@ function FeedbackForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+
     // Add further 
     
     alert('Feedback submitted successfully!');
   
   // Redirect to another page if form is submitted
-  navigate('/');
+  navigate('/getway-travels');
   };
   return (
+    <>
+    <div style={{height:"11vh"}}></div>
+    
     <div className="form-container">
-      <h2 > GetWays Travel Feedback Form</h2>
+       <h2 > GetWays Travel Feedback Form</h2>
       <p>Please fill out the form below:</p>
       <form onSubmit={handleSubmit}>
         <label>
@@ -107,6 +115,7 @@ function FeedbackForm() {
         <button type="submit" className="submit-button">Submit Feedback</button>
       </form>
     </div>
+    </>
   );
 
 }
