@@ -9,6 +9,8 @@ function App() {
   const [color, setColor] = useState({ nav: "transparent", text: "white",lineargradient:"" });
   const [showSearchBar,setShowSearchBar] = useState(true)
   const [component,setComponent] = useState("")
+  const [loggedIn,setLoggedIn] = useState(false)
+  const [sortChoice, setSortChoice] = useState("")
  
 
      
@@ -16,7 +18,7 @@ function App() {
     fetch("https://getway-travels-json.onrender.com/packages")
     .then(res=>res.json())
     .then(data=>setData(data))
-  },[])
+  },[component])
  
   const dataToDispay = data.filter((item) => {
     if (search.length > 0) {
@@ -29,15 +31,21 @@ function App() {
     }
   })
 
-
-  
-
-
+  function handleSort(sortChoice){
+    if(sortChoice === "ascending"){
+      return (a,b)=>a.price - b.price
+    }
+    else if (sortChoice === "descending"){
+      return (a,b)=>b.price - a.price}
+      else{
+        return ()=>0
+      }
+  }
 
   return (
     <>
-    <Navbar search={search} setSearch={setSearch} color={color} setColor={setColor} showSearchBar={showSearchBar} component={component} setShowSearchBar = {setShowSearchBar}/>
-    <Outlet context={[dataToDispay,setColor,setData,setShowSearchBar,setComponent]} />
+    <Navbar search={search} setSearch={setSearch} color={color} setColor={setColor} showSearchBar={showSearchBar} component={component} setShowSearchBar = {setShowSearchBar} loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>
+    <Outlet context={[dataToDispay.sort(handleSort(sortChoice)),setColor,setData,setShowSearchBar,setComponent,loggedIn,sortChoice,setSortChoice]} />
     </>
   );
 }

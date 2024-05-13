@@ -30,7 +30,7 @@ function FeedbackForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+
     // Add further 
     
     alert('Feedback submitted successfully!');
@@ -40,7 +40,7 @@ function FeedbackForm() {
   };
   return (
     <>
-    <div style={{height:"14vh"}}></div>
+    <div style={{height:"11vh"}}></div>
     
     <div className="form-container">
        <h2 > GetWays Travel Feedback Form</h2>

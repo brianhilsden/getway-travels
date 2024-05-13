@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom"
-import { useState,useEffect } from "react";
+import { useEffect } from "react";
 import logo from "./—Pngtree—summer coast vacation logo_5462462.png";
+import { auth } from "./firebase";
+import { onAuthStateChanged,signOut } from "firebase/auth";
 
-function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShowSearchBar}){
+function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShowSearchBar,loggedIn,setLoggedIn}){
+  const navigate = useNavigate()
 
   // Function to handle changes in the search input
   function handleChange(e) {
@@ -12,22 +15,33 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
   // Function to handle the search submission
   function handleSearch(e) {
     e.preventDefault();
-    setTimeout(() => {
-      document
-        .querySelector("#packages")
-        .scrollIntoView({ behavior: "smooth" });
-    }, 100);
+
+     const packagesElement = document.querySelector("#packages");
+    if (packagesElement) {
+      setTimeout(() => {
+        packagesElement.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      console.error("Element with ID 'packages' not found.");
+   
+  }
   }
 
-  const navigate = useNavigate()
+  function handleLogout(){
+    signOut(auth).then(()=>{
+      setLoggedIn(false)
+      navigate("/getway-travels")
+    }).catch((error)=>{
+      console.log(error);
+    })
+  }
 
+  
   // Effect hook to add/remove event handler for navbar color changes on scroll
   useEffect(() => {
     const handleScroll = () => {
-    
-    const lineargradient = window.scrollY > 600 ? "linear-gradient(112.1deg, rgba(32, 38, 57, 0.96) 19.4%, rgba(63, 76, 119, 0.96) 70.2%)" : "";
-     
-     setColor(prev => ({...prev, lineargradient: lineargradient}))}
+      const lineargradient = window.scrollY > 600 ? "radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50,0.97) 0%, rgb(0, 0, 0,0.97) 99.4%)" : "";
+      setColor(prev => ({...prev, lineargradient: lineargradient}))}
 
     if(component === "landing"){
       window.addEventListener("scroll", handleScroll);
@@ -37,17 +51,32 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
       if(component == "contactUs" || component == "feedbackForm"){
             setColor(prev => ({...prev, lineargradient: "linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%)", text: "white"}))}
         else{
-          setColor(prev => ({...prev,nav:"transparent",text:"white",lineargradient:""}))
+          setColor(prev => ({...prev,text:"white",lineargradient:"radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50,0.65) 0%, rgb(0, 0, 0,0.65) 99.4%)"}))
         }
     }
-    console.log(component);
-
+ 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [component]);
 
+
+
+  useEffect(()=>{
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+  
+          setLoggedIn(true)
+        } else {
+   
+          setLoggedIn(false)
+         
+        }
+      });
+     
+}, [])
+
   return(
     <nav
-    class="navbar navbar-expand-lg navbar-light"
+    className="navbar navbar-expand-lg navbar-light"
     style={{
       position: "fixed",
       width: "100%",
@@ -56,11 +85,12 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
       backgroundImage:color.lineargradient,
       color: "white",
       fontSize: "larger",
+      height:"10vh"
     }}
   >
-    <div class="container-fluid">
+    <div className="container-fluid">
       <div
-        class="navbar-brand ms-4"
+        className="navbar-brand ms-4"
         onClick={() =>{ navigate("/getway-travels")}}
         style={{
           color: color.text,
@@ -73,7 +103,7 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
         Travels
       </div>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent"
@@ -82,13 +112,13 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
         aria-label="Toggle navigation"
         style={{ color: color.text }}
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li className="nav-item">
             <a
-              class="nav-link active"
+              className="nav-link active"
               aria-current="page"
               style={{ color: color.text, cursor: "pointer" }}
               onClick={() => navigate("/getway-travels")}
@@ -96,9 +126,9 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
               Home
             </a>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <a
-              class="nav-link"
+              className="nav-link"
               style={{ color: color.text, cursor: "pointer" }}
               onClick={() => navigate("/getway-travels/wishlist")}
             >
@@ -106,27 +136,10 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
             </a>
           </li>
 
-          <li class="nav-item">
+
+          <li className="nav-item dropdown">
             <a
-              class="nav-link"
-              onClick={() => { navigate("/getway-travels/login")}}
-              style={{ color: color.text, cursor: "pointer" }}
-            >
-              Login
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              style={{ color: color.text, cursor: "pointer" }}
-              onClick={() => navigate("/getway-travels/signUp")}
-            >
-              SignUp
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
+              className="nav-link dropdown-toggle"
               href="#"
               id="navbarDropdown"
               role="button"
@@ -136,10 +149,10 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
             >
               Contact Us
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
                 <a
-                  class="dropdown-item"
+                  className="dropdown-item"
                   onClick={() => navigate("/getway-travels/contactUs")}
                   style={{ cursor: "pointer" }}
                 >
@@ -147,19 +160,46 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={() => navigate("/getway-travels/feedbackForm")} style={{ cursor: "pointer" }}>
+                <a className="dropdown-item" onClick={() => navigate("/getway-travels/feedbackForm")} style={{ cursor: "pointer" }}>
                   Share your feedback
                 </a>
               </li>
-             
-             
+
+
             </ul>
           </li>
+          {!loggedIn && <li className="nav-item">
+            <a
+              className="nav-link"
+              onClick={() => { navigate("/getway-travels/login")}}
+              style={{ color: color.text, cursor: "pointer" }}
+            >
+              Login
+            </a>
+          </li>}
+          {!loggedIn && <li className="nav-item">
+            <a
+              className="nav-link"
+              style={{ color: color.text, cursor: "pointer" }}
+              onClick={() => navigate("/getway-travels/signUp")}
+            >
+              SignUp
+            </a>
+          </li>}
+          {loggedIn && <li className="nav-item">
+            <a
+              className="nav-link"
+              style={{ color: color.text, cursor: "pointer" }}
+              onClick={handleLogout}
+            >
+              Logout
+            </a>
+          </li>}
         </ul>
 
-        {showSearchBar && <form class="d-flex" onSubmit={handleSearch}>
+        {showSearchBar && <form className="d-flex" onSubmit={handleSearch}>
           <input
-            class="form-control me-2"
+            className="form-control me-2"
             type="search"
             placeholder="Search"
             aria-label="Search"
@@ -168,8 +208,8 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
             style={{
               color: color.text,
               backgroundColor: "rgba(255, 255, 255, 0.1)",
-              fontSize: "18px",
-              padding: "7px 8px"
+              fontSize: "14px",
+              padding: "8px 5px"
             }}
           />
 
@@ -177,8 +217,8 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
             type="submit"
             style={{
               color: color.text,
-              fontSize: "18px",
-              padding: "5px 1px"
+              fontSize: "14px",
+              padding: "8px 5px"
             }}
           >
             Search

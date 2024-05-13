@@ -27,7 +27,7 @@ function ContactForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+  
     // Add further processing as needed
 
     // Show alert after form submission
@@ -46,7 +46,7 @@ function ContactForm() {
 
   return (
     <>
-    <div style={{height:"10.7vh"}}></div>
+    <div style={{height:"8vh"}}></div>
     
     <div className="contact-container">
     
