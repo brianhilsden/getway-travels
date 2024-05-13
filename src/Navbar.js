@@ -4,6 +4,7 @@ import logo from "./—Pngtree—summer coast vacation logo_5462462.png";
 import { auth } from "./firebase";
 import { onAuthStateChanged,signOut } from "firebase/auth";
 
+// Main Navbar Component
 function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShowSearchBar,loggedIn,setLoggedIn}){
   const navigate = useNavigate()
 
@@ -15,18 +16,17 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
   // Function to handle the search submission
   function handleSearch(e) {
     e.preventDefault();
-
-     const packagesElement = document.querySelector("#packages");
+    const packagesElement = document.querySelector("#packages");
     if (packagesElement) {
       setTimeout(() => {
         packagesElement.scrollIntoView({ behavior: "smooth" });
       }, 100);
     } else {
       console.error("Element with ID 'packages' not found.");
-   
-  }
+    }
   }
 
+  // Function to handle user logout
   function handleLogout(){
     signOut(auth).then(()=>{
       setLoggedIn(false)
@@ -36,43 +36,36 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
     })
   }
 
-  
-  // Effect hook to add/remove event handler for navbar color changes on scroll
+  // Hook to setup and clean up the navbar color during scrolling
   useEffect(() => {
     const handleScroll = () => {
       const lineargradient = window.scrollY > 600 ? "radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50,0.97) 0%, rgb(0, 0, 0,0.97) 99.4%)" : "";
-      setColor(prev => ({...prev, lineargradient: lineargradient}))}
+      setColor(prev => ({...prev, lineargradient: lineargradient}))
+    }
 
     if(component === "landing"){
       window.addEventListener("scroll", handleScroll);
-    }
-    else{
+    } else {
       setShowSearchBar(false)
       if(component == "contactUs" || component == "feedbackForm"){
-            setColor(prev => ({...prev, lineargradient: "linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%)", text: "white"}))}
-        else{
-          setColor(prev => ({...prev,text:"white",lineargradient:"radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50,0.65) 0%, rgb(0, 0, 0,0.65) 99.4%)"}))
-        }
+        setColor(prev => ({...prev, lineargradient: "linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%)", text: "white"}))
+      } else {
+        setColor(prev => ({...prev,text:"white",lineargradient:"radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50,0.65) 0%, rgb(0, 0, 0,0.65) 99.4%)"}))
+      }
     }
- 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [component]);
 
-
-
+  // Authentication state observer to manage user login status
   useEffect(()=>{
     onAuthStateChanged(auth, (user) => {
-        if (user) {
-  
-          setLoggedIn(true)
-        } else {
-   
-          setLoggedIn(false)
-         
-        }
-      });
-     
-}, [])
+      if (user) {
+        setLoggedIn(true)
+      } else {
+        setLoggedIn(false)
+      }
+    });
+  }, [])
 
   return(
     <nav
@@ -135,8 +128,6 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
               WishList
             </a>
           </li>
-
-
           <li className="nav-item dropdown">
             <a
               className="nav-link dropdown-toggle"
@@ -164,8 +155,6 @@ function Navbar({search,setSearch,color,setColor,showSearchBar,component,setShow
                   Share your feedback
                 </a>
               </li>
-
-
             </ul>
           </li>
           {!loggedIn && <li className="nav-item">

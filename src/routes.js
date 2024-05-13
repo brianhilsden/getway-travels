@@ -6,10 +6,12 @@ import ContactUs from "./ContactUs";
 import FeedBackForm from "./FeedbackForm";
 import Wishlist from "./Wishlist";
 import LandingPage from "./LandingPage";
+import ErrorPage from "./ErrorPage";
 
 const routes = [
   { path: "/getway-travels",
    element: <App />,
+   errorElement:<ErrorPage/>,
     children:[
       {
         path:"/getway-travels",
