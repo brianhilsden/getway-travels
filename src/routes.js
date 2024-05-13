@@ -1,21 +1,22 @@
 import App from "./App";
-import SignUp from "./SignUp";
-import Login from "./Login";
-import SpecificPage from "./SpecificPage";
-import ContactUs from "./ContactUs";
-import FeedBackForm from "./FeedbackForm";
-import Wishlist from "./Wishlist";
-import LandingPage from "./LandingPage";
-import ErrorPage from "./ErrorPage";
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
+import SpecificPage from "./components/SpecificPage";
+import ContactUs from "./components/ContactUs";
+import FeedBackForm from "./components/FeedbackForm";
+import Wishlist from "./components/Wishlist";
+import LandingPage from "./components/LandingPage";
+import ErrorPage from "./components/ErrorPage";
 
 const routes = [
-  { path: "/getway-travels",
-   element: <App />,
-   errorElement:<ErrorPage/>,
-    children:[
+  {
+    path: "/getway-travels",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
       {
-        path:"/getway-travels",
-        element:<LandingPage/>
+        path: "/getway-travels",
+        element: <LandingPage />,
       },
       { path: "/getway-travels/specificPage/:id", element: <SpecificPage /> },
       { path: "/getway-travels/signUp", element: <SignUp /> },
@@ -24,9 +25,7 @@ const routes = [
       { path: "/getway-travels/signUp", element: <SignUp /> },
       { path: "/getway-travels/feedbackForm", element: <FeedBackForm /> },
       { path: "/getway-travels/wishlist", element: <Wishlist /> },
-
-    ]
+    ],
   },
-
 ];
 export { routes };
