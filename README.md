@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Phase 2 Project
+#### Date: 12/May/2024
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description  
+Tours and travels app that allow users to book travel packages for a vacation. The project was developed by a group of like-minded developers. Some of the features of the app include:
+ - Register account
+ - Sign in to account
+ - Reset password
+ - Log out
+ - View available packages
+ - Search for packages
+ - Filter by price
+ - Book packages
+ - Add packages to wishlist
+ - Remove packages from wishlist
+ - View wishlist 
+ - Contact and provide feedback
+More features are in the works to make the website even more effective
+## Table of Contents
+- [Installation](#installation)
+- [Installation requirements](#installation-requirements)
+- [Installation instruction](#installation-instruction)
+- [Live link](#website-link)
+- [Technologies used](#technologies-used)
+- [Authors](#authors)
+- [Support and contact details](#support-and-contact-details)
+- [License](#license)
 
-## Available Scripts
 
-In the project directory, you can run:
+## Installation
+The website link works well if you want to use the web app. However, you can also run the project locally by first cloning it. The process is as follows: 
+1. Use git clone to download the repository from github
+2. Install NPM packages
 
-### `npm start`
+## Installation requirements
+- git 
+- npm
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Installation instruction
+```
+1. git clone git@github.com:brianhilsden/getway-travels.git
+2. npm install
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+## Website Link
+- [https://brianhilsden.github.io/getway-travels/](https://brianhilsden.github.io/getway-travels/)
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies used
+- HTML
+- CSS
+- Javascript
+- React JS
+- Bootstrap 5.3.3
+- Firebase
 
-### `npm run build`
+## Support and contact details
+- [github.com/brianhilsden](github.com/brianhilsden)
+- brianhilsden@gmail.com
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Authors
+ - *Brian Omondi* [https://github.com/brianhilsden](https://github.com/brianhilsden)
+ - *Mary Mungai*  [https://github.com/MungaiNjeri](https://github.com/MungaiNjeri)
+ - *Mark Telvin*  [https://github.com/TelvinOT](https://github.com/TelvinOT)
+ - *Grace Njau*   [github.com/LAOURIE](github.com/LAOURIE)
+### License
+The content of this site is licensed under the MIT license
+Copyright &copy; 2024.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
