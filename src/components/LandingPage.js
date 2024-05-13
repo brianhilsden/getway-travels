@@ -172,7 +172,7 @@ function LandingPage() {
                   {data.description.substring(0, 206)}...
                 </p>
                 <p className="card-text" style={{ marginBottom: "10px" }}>
-                  <small className="text-muted">{data.price} per person</small>
+                  <small className="text-muted">Ksh.{data.price} per person</small>
                 </p>
               </div>
             </div>
