@@ -1,27 +1,27 @@
 import './App.css';
 import Navbar from './Navbar';
-import { Outlet } from 'react-router-dom';
-import { useState,useEffect } from 'react';
+import { Outlet } from 'react-router-dom'; 
+import { useState,useEffect } from 'react'; 
 
 function App() {
-  const [data, setData] = useState([]);
-  const [search,setSearch] = useState("")
-  const [color, setColor] = useState({ nav: "transparent", text: "white",lineargradient:"" });
-  const [showSearchBar,setShowSearchBar] = useState(true)
-  const [component,setComponent] = useState("")
-  const [loggedIn,setLoggedIn] = useState(false)
-  const [sortChoice, setSortChoice] = useState("")
- 
+  const [data, setData] = useState([]); // State for storing fetched data
+  const [search,setSearch] = useState(""); // State for storing search input
+  const [color, setColor] = useState({ nav: "transparent", text: "white",lineargradient:"" }); // State for dynamic style changes
+  const [showSearchBar,setShowSearchBar] = useState(true) // State to show or hide the search bar
+  const [component,setComponent] = useState(""); // State for current component indication
+  const [loggedIn,setLoggedIn] = useState(false); // State for user's authentication status
+  const [sortChoice, setSortChoice] = useState(""); // State to store sorting choice
 
-     
+
+
   useEffect(()=>{
     fetch("https://getway-travels-json.onrender.com/packages")
-    .then(res=>res.json())
-    .then(data=>setData(data))
-  },[component])
- 
-  const dataToDispay = data.filter((item) => {
-    if (search.length > 0) {
+    .then(res=>res.json()) 
+    .then(data=>setData(data)) // Updating state with fetched data
+  },[component]) // Effect depends on component change
+
+  const dataToDispay = data.filter((item) => { // Filter data based on search input
+    if (search.length > 0) { // Condition if there is a search query
       return (
         item.name.toLowerCase().includes(search.toLowerCase()) ||
         item.description.toLowerCase().includes(search.toLowerCase())
@@ -31,11 +31,11 @@ function App() {
     }
   })
 
-  function handleSort(sortChoice){
-    if(sortChoice === "ascending"){
+  function handleSort(sortChoice){  // Function to handle sorting of items
+    if(sortChoice === "ascending"){ // If choice is 'ascending'
       return (a,b)=>a.price - b.price
     }
-    else if (sortChoice === "descending"){
+    else if (sortChoice === "descending"){ // If choice is 'descending'
       return (a,b)=>b.price - a.price}
       else{
         return ()=>0

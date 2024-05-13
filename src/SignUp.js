@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import './SignUp.css'; 
+import './SignUp.css';
 import { useOutletContext } from 'react-router-dom';
 import { createUserWithEmailAndPassword,getAuth,updateProfile } from 'firebase/auth';
 import { auth } from './firebase';
@@ -8,12 +8,13 @@ import { auth } from './firebase';
 function SignUpForm() {
     const navigate = useNavigate()
     const [ , , , ,setComponent] = useOutletContext()
-  const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: ''
   });
-  
+
+  // Handles input changes and updates formData state
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -22,37 +23,35 @@ function SignUpForm() {
     }));
   };
 
+  // Submits the signup form and handles user creation and navigation
   const handleSubmit = async(e) => {
     e.preventDefault();
-  
-    await createUserWithEmailAndPassword(auth,formData.email,formData.password)
-    .then(()=>{  
-      navigate('/getway-travels');
+
+    await createUserWithEmailAndPassword(auth, formData.email, formData.password)
+    .then(()=>{
+      navigate('/getway-travels'); // Navigate to the specified path after signup
     }).then(()=>{
       updateProfile(auth.currentUser, {
-        displayName: formData.username
+        displayName: formData.username // Update user profile with username
       }).catch((error) => {
-        console.error(error)
-        // An error occurred
-        // ...
+        console.error(error) // Logs error if profile update fails
       });
-    }) .catch((error) => {
+    }).catch((error) => {
       const errorMessage = error.message;
-      alert(errorMessage);
-  });
-
-    
+      alert(errorMessage); // Show error message if signup fails
+    });
   };
-  
-useEffect(()=>{
-  setComponent("signUp")
-},[])
+
+  // Set a component tag on load
+  useEffect(()=>{
+    setComponent("signUp")
+  },[])
 
 
   return (
     <div className="container-fluid">
-      <div className="background-signUp" ></div>
-     <div className="form-card" >
+      <div className="background-signUp"></div>
+      <div className="form-card" >
 
         <h2>Sign Up</h2>
         <form onSubmit={handleSubmit}>
