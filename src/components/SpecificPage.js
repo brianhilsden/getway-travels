@@ -49,6 +49,16 @@ const SpecificPage = () => {
       })
       .then(res=>res.json())
       .then(()=>setSpecificPage(prev=>({...prev,wishlist:true})))
+      fetch("https://getway-travels-json.onrender.com/wishlist",{
+          method:"POST",
+          headers:{
+            "Content-Type": "application/json",
+            Accept: "application/json"
+
+          },
+          body:JSON.stringify(packageSaved)
+        }
+        )
     }
     else{
       fetch(`https://getway-travels-json.onrender.com/packages/${packageSaved.id}`,{
@@ -61,6 +71,12 @@ const SpecificPage = () => {
           wishlist:false
         })
       }).then(()=>setSpecificPage(prev=>({...prev,wishlist:false})))
+      fetch(`https://getway-travels-json.onrender.com/wishlist/${packageSaved.id}`,{
+        method:"DELETE",
+        headers:{
+          "Content-Type": "application/json",
+        }
+      })
     }
   }
 
