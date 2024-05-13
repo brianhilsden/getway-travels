@@ -56,7 +56,7 @@ const SpecificPage = ({name, image, description, Itinerary, price, onBookNow, on
               <p className='ms-4'>DESCRIPTION: {SpecificPage.description} </p>
       </div>
        
-              <p>ITINERARY: {SpecificPage.itinerary}</p>
+              <p style={{fontFamily: "Arial, sans-serif", fontSize: "16px", color: "success", padding: "10px", border: "2px solid #F76C6C", borderRadius: "8px", backgroundColor: "#FFF1F1"}}>ITINERARY: {SpecificPage.itinerary}</p>
               <p>price: {SpecificPage.price}</p>
               <button className='btn btn-primary' onClick={handleBookNow} style={{ marginRight: '10px' }}>Book Now</button>
               <button className='btn btn-success' onClick={()=>addToWishlist(SpecificPage)} style={{ marginRight: '10px' }}>{isWishlist ? "Remove from Wishlist" : "Add to Wishlist"}</button>
