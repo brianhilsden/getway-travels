@@ -27,7 +27,7 @@ const SpecificPage = () => {
 
   // Fetch specific page details on mount
   useEffect(()=>{
-    fetch(`https://getway-travels-json.onrender.com/packages/${specificPageid}`)
+    fetch(`https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/packages/${specificPageid}`)
     .then(res=>res.json())
     .then(data=> setSpecificPage(data))
     // Set current component in context
@@ -37,7 +37,7 @@ const SpecificPage = () => {
   // Function to toggle wishlist status
   function addToWishlist(packageSaved){
     if(packageSaved.wishlist === false){
-      fetch(`https://getway-travels-json.onrender.com/packages/${packageSaved.id}`,{
+      fetch(`https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/packages/${packageSaved.id}`,{
         method:"PATCH",
         headers:{
           "Content-Type":"application/json",
@@ -49,7 +49,7 @@ const SpecificPage = () => {
       })
       .then(res=>res.json())
       .then(()=>setSpecificPage(prev=>({...prev,wishlist:true})))
-      fetch("https://getway-travels-json.onrender.com/wishlist",{
+      fetch("https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/wishlist",{
           method:"POST",
           headers:{
             "Content-Type": "application/json",
@@ -61,7 +61,7 @@ const SpecificPage = () => {
         )
     }
     else{
-      fetch(`https://getway-travels-json.onrender.com/packages/${packageSaved.id}`,{
+      fetch(`https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/packages/${packageSaved.id}`,{
         method:"PATCH",
         headers:{
           "Content-Type":"application/json",
@@ -71,7 +71,7 @@ const SpecificPage = () => {
           wishlist:false
         })
       }).then(()=>setSpecificPage(prev=>({...prev,wishlist:false})))
-      fetch(`https://getway-travels-json.onrender.com/wishlist/${packageSaved.id}`,{
+      fetch(`https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/wishlist/${packageSaved.id}`,{
         method:"DELETE",
         headers:{
           "Content-Type": "application/json",

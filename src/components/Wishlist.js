@@ -10,7 +10,7 @@ const WishlistPage = () => {
   const [ , , , ,setComponent] = useOutletContext()
 
  useEffect(()=>{
-  fetch("https://getway-travels-json.onrender.com/packages")
+  fetch("https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/packages")
   .then(res=>res.json())
   .then(data=>setWishlistItems(data.filter(item=>item.wishlist === true)))
   setComponent("wishlist")
@@ -21,7 +21,7 @@ const WishlistPage = () => {
   const removeItemFromWishlist = (id) => {
     const updatedWishlistItems = wishlistItems.filter((item) => item.id !== id);
     setWishlistItems(updatedWishlistItems);
-    fetch(`https://getway-travels-json.onrender.com/packages/${id}`,{
+    fetch(`https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/packages/${id}`,{
       method:"PATCH",
       headers:{
         "Content-Type":"application/json",
@@ -31,7 +31,7 @@ const WishlistPage = () => {
         wishlist:false
       })
     })
-    fetch(`https://getway-travels-json.onrender.com/wishlist/${id}`,{
+    fetch(`https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/wishlist/${id}`,{
         method:"DELETE",
         headers:{
           "Content-Type": "application/json",

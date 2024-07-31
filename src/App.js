@@ -17,7 +17,7 @@ function App() {
   const [sortChoice, setSortChoice] = useState(""); // State to store sorting choice
 
   useEffect(() => {
-    fetch("https://getway-travels-json.onrender.com/packages")
+    fetch("https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/packages")
       .then((res) => res.json())
       .then((data) => setData(data)); // Updating state with fetched data
   }, [component]); // Effect depends on component change

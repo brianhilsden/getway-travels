@@ -33,7 +33,7 @@ function LandingPage() {
     if (packageSaved.wishlist === false) {
       // Check if the package is not in the wishlist
       fetch(
-        `https://getway-travels-json.onrender.com/packages/${packageSaved.id}`,
+        `https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/packages/${packageSaved.id}`,
         {
           method: "PATCH",
           headers: {
@@ -55,7 +55,7 @@ function LandingPage() {
             )
           )
         ); // Update the local data to reflect wishlist change
-        fetch("https://getway-travels-json.onrender.com/wishlist",{
+        fetch("https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/wishlist",{
           method:"POST",
           headers:{
             "Content-Type": "application/json",
@@ -68,7 +68,7 @@ function LandingPage() {
 
     } else {
       fetch(
-        `https://getway-travels-json.onrender.com/packages/${packageSaved.id}`,
+        `https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/packages/${packageSaved.id}`,
         {
           method: "PATCH",
           headers: {
@@ -88,7 +88,7 @@ function LandingPage() {
           )
         )
       ); // Update the local data to reflect wishlist change
-      fetch(`https://getway-travels-json.onrender.com/wishlist/${packageSaved.id}`,{
+      fetch(`https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/wishlist/${packageSaved.id}`,{
         method:"DELETE",
         headers:{
           "Content-Type": "application/json",
