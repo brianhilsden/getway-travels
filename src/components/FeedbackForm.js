@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import './FeedbackForm.css'; 
+import './FeedbackForm.css';
 
-
+// Defines the FeedbackForm component
 function FeedbackForm() {
-  const navigate = useNavigate()
-  const [ ,  , ,, setComponent] = useOutletContext()
+  const navigate = useNavigate() // Hook for navigation
+  const [ ,  , ,, setComponent] = useOutletContext() // Destructures outlet context to get setComponent function
 
+  // State to store form data
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     phoneNumber: '',
     feedback: '',
-    satisfaction: '', 
-    experience: '', 
-    recommendation: '' 
+    satisfaction: '',
+    experience: '',
+    recommendation: ''
   });
 
+  // Effect hook to update the current component
   useEffect(()=>{
     setComponent("feedbackForm")
   },[])
+
+  // Handles input change and updates state
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -28,20 +32,20 @@ function FeedbackForm() {
     }));
   };
 
+  // Handles form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Add further 
-    
-    alert('Feedback submitted successfully!');
-  
-  // Redirect to another page if form is submitted
-  navigate('/getway-travels');
+    alert('Feedback submitted successfully!'); // Alert successful submission
+
+    // Redirect to homepage if form is submitted
+    navigate('/getway-travels');
   };
+
   return (
     <>
     <div style={{height:"11vh"}}></div>
-    
+
     <div className="form-container">
        <h2 > GetWays Travel Feedback Form</h2>
       <p>Please fill out the form below:</p>
@@ -63,19 +67,15 @@ function FeedbackForm() {
           <textarea name="feedback" value={formData.feedback} onChange={handleInputChange} />
         </label>
         <h3>Additional Questions</h3>
-        <label> 
+        <label>
           How Did You Find Out About Us?
           <select name ="Find" value ={formData.Find} onChange={handleInputChange}>
             <option value="">Select a way</option>
             <option value="google">Google</option>
             <option value="facebook">Facebook</option>
-
             <option value="instagram">Instagram</option>
-
             <option value="twitter">Twitter</option>
-
             <option value="linkedin">LinkedIn</option>
-
             <option value="other">Other</option>
           </select>
           </label>
