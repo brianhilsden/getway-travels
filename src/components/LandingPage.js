@@ -32,6 +32,8 @@ function LandingPage() {
     // Function to add or remove a package from wishlist
     if (packageSaved.wishlist === false) {
       // Check if the package is not in the wishlist
+      console.log(packageSaved.id);
+      
       fetch(
         `https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/packages/${packageSaved.id}`,
         {
@@ -67,6 +69,8 @@ function LandingPage() {
         )
 
     } else {
+      console.log("here",packageSaved);
+      
       fetch(
         `https://getway-travels-vercel-riqc7b6s7-brianhilsdens-projects.vercel.app/packages/${packageSaved.id}`,
         {
@@ -134,6 +138,7 @@ function LandingPage() {
                 src={data.image}
                 className="card-img-top"
                 alt={data.name}
+                loading="lazy"
                 style={{
                   width: "100%",
                   height: "250px",
