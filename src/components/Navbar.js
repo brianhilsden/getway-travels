@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import logo from "./—Pngtree—summer coast vacation logo_5462462.png";
 import { auth } from "../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -16,6 +16,12 @@ function Navbar({
   loggedIn,
   setLoggedIn,
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleNavbar = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   const navigate = useNavigate();
 
   // Function to handle changes in the search input
@@ -106,7 +112,7 @@ function Navbar({
         height: "10vh",
       }}
     >
-      <div className="container-fluid">
+      <div className="container-fluid  ">
         <div
           className="navbar-brand ms-4"
           onClick={() => {
@@ -124,38 +130,40 @@ function Navbar({
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          style={{ color: color.text }}
+          onClick={toggleNavbar}
+          aria-expanded={isOpen}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <div
+          className={`navbar-collapse bg-gray-900/85 sm:bg-gray-900/0 p-2 rounded-md  ${
+            isOpen ? "block" : "hidden"
+          }`}
+          id="navbarSupportedContent"
+        >
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a
+              <span
                 className="nav-link active"
                 aria-current="page"
                 style={{ color: color.text, cursor: "pointer" }}
                 onClick={() => navigate("/getway-travels")}
               >
                 Home
-              </a>
+              </span>
             </li>
             <li className="nav-item">
-              <a
+              <span
                 className="nav-link"
                 style={{ color: color.text, cursor: "pointer" }}
                 onClick={() => navigate("/getway-travels/wishlist")}
               >
                 WishList
-              </a>
+              </span>
             </li>
             <li className="nav-item dropdown">
-              <a
+              <span
                 className="nav-link dropdown-toggle"
                 href="#"
                 id="navbarDropdown"
@@ -165,31 +173,31 @@ function Navbar({
                 style={{ color: color.text }}
               >
                 Contact Us
-              </a>
+              </span>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a
+                  <span
                     className="dropdown-item"
                     onClick={() => navigate("/getway-travels/contactUs")}
                     style={{ cursor: "pointer" }}
                   >
                     Contact Us
-                  </a>
+                  </span>
                 </li>
                 <li>
-                  <a
+                  <span
                     className="dropdown-item"
                     onClick={() => navigate("/getway-travels/feedbackForm")}
                     style={{ cursor: "pointer" }}
                   >
                     Share your feedback
-                  </a>
+                  </span>
                 </li>
               </ul>
             </li>
             {!loggedIn && (
               <li className="nav-item">
-                <a
+                <span
                   className="nav-link"
                   onClick={() => {
                     navigate("/getway-travels/login");
@@ -197,29 +205,29 @@ function Navbar({
                   style={{ color: color.text, cursor: "pointer" }}
                 >
                   Login
-                </a>
+                </span>
               </li>
             )}
             {!loggedIn && (
               <li className="nav-item">
-                <a
+                <span
                   className="nav-link"
                   style={{ color: color.text, cursor: "pointer" }}
                   onClick={() => navigate("/getway-travels/signUp")}
                 >
                   SignUp
-                </a>
+                </span>
               </li>
             )}
             {loggedIn && (
               <li className="nav-item">
-                <a
+                <span
                   className="nav-link"
                   style={{ color: color.text, cursor: "pointer" }}
                   onClick={handleLogout}
                 >
                   Logout
-                </a>
+                </span>
               </li>
             )}
           </ul>
