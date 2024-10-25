@@ -17,6 +17,13 @@ function Navbar({
   setLoggedIn,
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  function toggleDropdown() {
+    console.log(isDropdownOpen);
+    
+    setIsDropdownOpen((prev) => !prev);
+  }
 
   const toggleNavbar = () => {
     setIsOpen((prev) => !prev);
@@ -162,39 +169,25 @@ function Navbar({
                 WishList
               </span>
             </li>
-            <li className="nav-item dropdown">
+            <li className="nav-item">
               <span
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                style={{ color: color.text }}
+                className="nav-link"
+                style={{ color: color.text, cursor: "pointer" }}
+                onClick={() => navigate("/getway-travels/contactUs")}
               >
-                Contact Us
+                 Contact Us
               </span>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <span
-                    className="dropdown-item"
-                    onClick={() => navigate("/getway-travels/contactUs")}
-                    style={{ cursor: "pointer" }}
-                  >
-                    Contact Us
-                  </span>
-                </li>
-                <li>
-                  <span
-                    className="dropdown-item"
-                    onClick={() => navigate("/getway-travels/feedbackForm")}
-                    style={{ cursor: "pointer" }}
-                  >
-                    Share your feedback
-                  </span>
-                </li>
-              </ul>
             </li>
+            <li className="nav-item">
+              <span
+                className="nav-link"
+                style={{ color: color.text, cursor: "pointer" }}
+                onClick={() => navigate("/getway-travels/feedbackForm")}
+              >
+                 Feedback
+              </span>
+            </li>
+           
             {!loggedIn && (
               <li className="nav-item">
                 <span
